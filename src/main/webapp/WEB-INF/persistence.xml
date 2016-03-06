@@ -1,0 +1,7 @@
+<persistence xmlns="http://java.sun.com/xml/ns/persistence"
+             version="1.0">
+    <persistence-unit name="test">
+        <class>shop.model.Category</class>
+        <class>shop.model.Product</class>
+    </persistence-unit>
+</persistence>

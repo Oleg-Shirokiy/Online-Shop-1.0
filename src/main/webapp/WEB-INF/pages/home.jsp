@@ -12,12 +12,15 @@
 </head>
 <body>
 <div id="header">
-    <span class="navMenuItem">
+    <p class="navMenuItem">
         <a href="/productList">Product list</a>
-    </span>
-    <span class="navMenuItem">
+    </p>
+    <p class="navMenuItem">
         <a href="/categoryBuilder">Category Builder</a>
-    </span>
+    </p>
+    <p class="navMenuItem">
+        <a href="/productBuilder">Product Builder</a>
+    </p>
     </div>
 
 </body>

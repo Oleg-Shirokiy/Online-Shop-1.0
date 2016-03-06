@@ -10,9 +10,8 @@ public class Category extends BaseModel{
     Category parentCategory;
 
     int level;
-    private String categoryID;
+    private String exCategoryID;
     private String categoryName;
-    private String parentCategoryID;
 
     public int getLevel() {
         return level;
@@ -22,12 +21,12 @@ public class Category extends BaseModel{
         this.level = level;
     }
 
-    public String getCategoryID() {
-        return categoryID;
+    public String getExCategoryID() {
+        return exCategoryID;
     }
 
-    public void setCategoryID(String categoryID) {
-        this.categoryID = categoryID;
+    public void setExCategoryID(String exCategoryID) {
+        this.exCategoryID = exCategoryID;
     }
 
     public String getCategoryName() {
@@ -36,14 +35,6 @@ public class Category extends BaseModel{
 
     public void setCategoryName(String categoryName) {
         this.categoryName = categoryName;
-    }
-
-    public String getParentCategoryID() {
-        return parentCategoryID;
-    }
-
-    public void setParentCategoryID(String parentCategoryID) {
-        this.parentCategoryID = parentCategoryID;
     }
 
     public Category getParentCategory() {

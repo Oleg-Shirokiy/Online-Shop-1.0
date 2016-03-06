@@ -14,12 +14,20 @@
     <title>Title</title>
 </head>
 <body>
+<p><a href="/">Home</a></p>
     <div id="allCategories">
+        <p>Categories</p>
         <c:forEach var="category" items="${categoryList}">
             <div class="categoryInAllListDiv">
-                <span class="categoryInAllListSpan">${category.level}) ${category.categoryName}</span></div>
+                <span class="categoryInAllListSpan">${category.level}-lvl: ${category.categoryName}</span></div>
         </c:forEach>
     </div>
-
+<div id="allProducts">
+    <p>Products</p>
+    <c:forEach var="product" items="${productList}">
+        <div class="categoryInAllListDiv">
+            <span class="productInAllListSpan">${product.name} - ${product.availability} - ${product.price} - ${product.currency} - in: ${product.category.categoryName}</span></div>
+    </c:forEach>
+</div>
 </body>
 </html>

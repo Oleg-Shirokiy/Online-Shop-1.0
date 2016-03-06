@@ -1,38 +1,46 @@
-package shop.model;
+package shop.dto;
 
-import javax.persistence.*;
+import shop.model.Availability;
+import shop.model.Category;
+import shop.model.Currency;
+
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.OneToOne;
+
 /**
- * Created by oleg on 05.03.16.
+ * Created by oleg on 06.03.16.
  */
-
-@Entity(name = "products")
-public class Product extends BaseModel {
-    @OneToOne
-    private Category category;
+public class ProductDTO {
+    private int categoryID;
 
     private String vendorCode;
     private String name;
+
     private Double price;
 
-    @Enumerated(EnumType.STRING)
-    private Currency currency;
+    //    @Enumerated(EnumType.STRING)
+    private String currency;
 
     private String imageLink;
 
-    @Enumerated(EnumType.STRING)
-    private Availability availability;
+    //    @Enumerated(EnumType.STRING)
+    private String availability;
     private String vendor;
+
+    private String description;
+    private String imageLinks;
     private String keyWords;
 
     private String exCategoryID;
     private String exProductID;
 
-    public Category getCategory() {
-        return category;
+    public int getCategoryID() {
+        return categoryID;
     }
 
-    public void setCategory(Category category) {
-        this.category = category;
+    public void setCategoryID(int categoryID) {
+        this.categoryID = categoryID;
     }
 
     public String getVendorCode() {
@@ -59,11 +67,11 @@ public class Product extends BaseModel {
         this.price = price;
     }
 
-    public Currency getCurrency() {
+    public String getCurrency() {
         return currency;
     }
 
-    public void setCurrency(Currency currency) {
+    public void setCurrency(String currency) {
         this.currency = currency;
     }
 
@@ -75,11 +83,11 @@ public class Product extends BaseModel {
         this.imageLink = imageLink;
     }
 
-    public Availability getAvailability() {
+    public String getAvailability() {
         return availability;
     }
 
-    public void setAvailability(Availability availability) {
+    public void setAvailability(String availability) {
         this.availability = availability;
     }
 
@@ -89,6 +97,22 @@ public class Product extends BaseModel {
 
     public void setVendor(String vendor) {
         this.vendor = vendor;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getImageLinks() {
+        return imageLinks;
+    }
+
+    public void setImageLinks(String imageLinks) {
+        this.imageLinks = imageLinks;
     }
 
     public String getKeyWords() {

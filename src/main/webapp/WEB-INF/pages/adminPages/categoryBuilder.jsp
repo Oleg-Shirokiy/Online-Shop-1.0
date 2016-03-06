@@ -16,16 +16,18 @@
     <title>Add new category</title>
 </head>
 <body>
+<p><a href="/">Home</a></p>
 <div>
-    <form method="post" action="/saveCategory">
+    <form:form method="post" action="/saveCategory">
         <input type="text" name="name" value="">
         <select name="parentCategoryId" size="1">
+            <option value=""></option>
             <c:forEach var="parentCategory" items="${categoryList}">
                 <option value="${parentCategory.id}">${parentCategory.categoryName}</option>
             </c:forEach>
             </select>
-        <input type="submit" value="Add category">
-    </form>
+        <input type="submit" value="Save category">
+    </form:form>
     </div>
 
 </body>

@@ -13,9 +13,8 @@ public class ProductContent extends BaseModel{
 
     private String description;
     private String imageLinks;
-    private String keyWords;
 
-    @OneToMany(cascade = CascadeType.MERGE, mappedBy = "productContent", fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "productContent", fetch = FetchType.LAZY)
     List<Attribute> attributes;
 
     public Product getProduct() {
@@ -40,14 +39,6 @@ public class ProductContent extends BaseModel{
 
     public void setImageLinks(String imageLinks) {
         this.imageLinks = imageLinks;
-    }
-
-    public String getKeyWords() {
-        return keyWords;
-    }
-
-    public void setKeyWords(String keyWords) {
-        this.keyWords = keyWords;
     }
 
     public List<Attribute> getAttributes() {

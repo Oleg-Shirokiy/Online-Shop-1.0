@@ -38,6 +38,7 @@ public class CategoryBuildController {
         if (parentCategoryId != null) {
             Category parentCategory = categoryService.getById(Integer.parseInt(parentCategoryId));
             category.setParentCategory(parentCategory);
+            category.setLevel(parentCategory.getLevel()+1);
         }
         categoryService.insert(category);
         return "redirect:/categoryBuilder";

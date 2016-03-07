@@ -37,6 +37,7 @@ public class ProductBuildController {
         modelAndView.addObject("categoryList", categoryList);
         modelAndView.addObject("availabilityEnum", Availability.values());
         modelAndView.addObject("currencyEnum", Currency.values());
+        modelAndView.addObject("basket", request.getSession().getAttribute("basket"));
         return modelAndView;
     }
 

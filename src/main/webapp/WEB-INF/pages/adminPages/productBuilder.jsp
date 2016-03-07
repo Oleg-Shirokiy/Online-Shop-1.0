@@ -16,6 +16,9 @@
 </head>
 <body>
 <p><a href="/">Home</a></p>
+<div id="basketPanel">
+    <a href="/showBasket">Basket: ${basket.size()}</a>
+</div>
 <div id="productBuilder">
     <form:form method="post" action="/saveProduct">
             <div class="builderInput">
@@ -46,7 +49,7 @@
         </div>
         <div class="builderInput">
             <span class="builderInputSign">price</span>
-            <input type="text" name="price" value="">
+            <input type="number" name="price" min="0" step="any" value="">
         </div>
         <div class="builderInput">
             <span class="builderInputSign">currency</span>

@@ -25,13 +25,14 @@ public class ProductListController {
     ProductService productService;
 
     @RequestMapping(value = "/productList", method = RequestMethod.GET)
-    public ModelAndView writeTo(HttpServletRequest request) throws SQLException {
+    public ModelAndView showProductList(HttpServletRequest request) throws SQLException {
         List<Category> categoryList = categoryService.getAll();
         List<Product> productList = productService.getAll();
 
         ModelAndView modelAndView = new ModelAndView(JspPath.PRODUCT_LIST);
         modelAndView.addObject("categoryList", categoryList);
         modelAndView.addObject("productList", productList);
+        modelAndView.addObject("basket", request.getSession().getAttribute("basket"));
         return modelAndView;
     }
 

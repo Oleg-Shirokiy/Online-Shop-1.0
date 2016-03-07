@@ -10,4 +10,9 @@ import shop.service.OrderService;
  */
 @Service
 public class OrderServiceImpl extends BaseService<Order, OrderDao> implements OrderService {
+    public Order getByIdWithProductList(Integer id) {
+        Order order = dao.findOne(id);
+        order.getProductList().size();
+        return order;
+    }
 }

@@ -11,6 +11,9 @@
     <title>Title</title>
 </head>
 <body>
+<div id="basketPanel">
+    <a href="/showBasket">Basket: ${basket.size()}</a>
+</div>
 <div id="header">
     <p class="navMenuItem">
         <a href="/productList">Product list</a>
@@ -20,6 +23,9 @@
     </p>
     <p class="navMenuItem">
         <a href="/productBuilder">Product Builder</a>
+    </p>
+    <p class="navMenuItem">
+        <a href="/orderList">Order list</a>
     </p>
     </div>
 

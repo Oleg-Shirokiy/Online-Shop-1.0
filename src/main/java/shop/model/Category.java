@@ -6,7 +6,7 @@ import javax.persistence.*;
  */
 @Entity(name = "categories")
 public class Category extends BaseModel{
-    @OneToOne
+    @ManyToOne
     Category parentCategory;
 
     int level;

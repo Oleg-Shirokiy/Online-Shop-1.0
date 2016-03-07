@@ -26,6 +26,7 @@ public class CategoryBuildController {
 
         ModelAndView modelAndView = new ModelAndView(JspPath.CATEGORY_BUILDER);
         modelAndView.addObject("categoryList", categoryList);
+        modelAndView.addObject("basket", request.getSession().getAttribute("basket"));
         return modelAndView;
     }
 

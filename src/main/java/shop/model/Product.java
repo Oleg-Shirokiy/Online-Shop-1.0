@@ -7,7 +7,7 @@ import javax.persistence.*;
 
 @Entity(name = "products")
 public class Product extends BaseModel {
-    @OneToOne
+    @ManyToOne
     private Category category;
 
     private String vendorCode;

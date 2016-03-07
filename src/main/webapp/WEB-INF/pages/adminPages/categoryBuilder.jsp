@@ -17,6 +17,9 @@
 </head>
 <body>
 <p><a href="/">Home</a></p>
+<div id="basketPanel">
+    <a href="/showBasket">Basket: ${basket.size()}</a>
+</div>
 <div>
     <form:form method="post" action="/saveCategory">
         <input type="text" name="name" value="">

@@ -20,7 +20,7 @@
     <a href="/showBasket">Basket: ${basket.size()}</a>
 </div>
 <div id="productBuilder">
-    <form:form method="post" action="/saveProduct">
+    <form:form method="post" action="/admin/saveProduct">
             <div class="builderInput">
                 <span class="builderInputSign">category</span>
                 <select name="categoryID" size="1">
@@ -30,7 +30,7 @@
                     </c:forEach>
                 </select>
             </div>
-        <form:form method="post" action="/saveProduct" modelAttribute="Product">
+        <form:form method="post" action="/admin/saveProduct" modelAttribute="Product">
         <div class="builderInput">
             <%--<span class="builderInputSign">categoryID</span>--%>
             <%--<select name="category" size="1">--%>
@@ -80,7 +80,7 @@
             <textarea rows="5" cols="20" name="keyWords"></textarea>
         </div>
 
-            <form:form method="post" action="/saveProduct" modelAttribute="ProductContent">
+            <form:form method="post" action="/admin/saveProduct" modelAttribute="ProductContent">
                 <div class="builderInput">
                     <span class="builderInputSign">description</span>
                     <textarea rows="10" cols="20" name="description"></textarea>

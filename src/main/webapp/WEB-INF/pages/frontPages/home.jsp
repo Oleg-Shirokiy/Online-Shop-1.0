@@ -19,13 +19,13 @@
         <a href="/productList">Product list</a>
     </p>
     <p class="navMenuItem">
-        <a href="/categoryBuilder">Category Builder</a>
+        <a href="/admin/categoryBuilder">Category Builder</a>
     </p>
     <p class="navMenuItem">
-        <a href="/productBuilder">Product Builder</a>
+        <a href="/admin/productBuilder">Product Builder</a>
     </p>
     <p class="navMenuItem">
-        <a href="/orderList">Order list</a>
+        <a href="/admin/orderList">Order list</a>
     </p>
     </div>
 

@@ -20,7 +20,7 @@ public class CategoryBuildController {
     @Autowired
     CategoryService categoryService;
 
-    @RequestMapping(value = "/categoryBuilder", method = RequestMethod.GET)
+    @RequestMapping(value = "/admin/categoryBuilder", method = RequestMethod.GET)
     public ModelAndView showCategoryBuilder(HttpServletRequest request) throws SQLException {
         List<Category> categoryList = categoryService.getAll();
 
@@ -30,7 +30,7 @@ public class CategoryBuildController {
         return modelAndView;
     }
 
-    @RequestMapping(value = "/saveCategory", method = RequestMethod.POST)
+    @RequestMapping(value = "/admin/saveCategory", method = RequestMethod.POST)
     public String saveCategory(HttpServletRequest request,
                                 @RequestParam(required = true) String name,
                                 @RequestParam(required = false) String parentCategoryId) throws SQLException {
@@ -42,6 +42,6 @@ public class CategoryBuildController {
             category.setLevel(parentCategory.getLevel()+1);
         }
         categoryService.insert(category);
-        return "redirect:/categoryBuilder";
+        return "redirect:/admin/categoryBuilder";
     }
 }

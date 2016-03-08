@@ -21,7 +21,7 @@ public class OrderListController {
     @Autowired
     OrderService orderService;
 
-    @RequestMapping(value = "/orderList", method = RequestMethod.GET)
+    @RequestMapping(value = "/admin/orderList", method = RequestMethod.GET)
     public ModelAndView showOrderList(HttpServletRequest request) throws SQLException {
         List<Order> orderList = orderService.getAll();
         ModelAndView modelAndView = new ModelAndView(JspPath.ORDER_LIST);

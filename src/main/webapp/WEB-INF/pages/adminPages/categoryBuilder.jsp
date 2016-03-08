@@ -21,7 +21,7 @@
     <a href="/showBasket">Basket: ${basket.size()}</a>
 </div>
 <div>
-    <form:form method="post" action="/saveCategory">
+    <form:form method="post" action="/admin/saveCategory">
         <input type="text" name="name" value="">
         <select name="parentCategoryId" size="1">
             <option value=""></option>

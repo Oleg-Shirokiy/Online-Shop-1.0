@@ -21,4 +21,6 @@
 
     <bean class="com.fasterxml.jackson.databind.ObjectMapper"/>
 
+    <import resource="security.xml" />
+
 </beans>

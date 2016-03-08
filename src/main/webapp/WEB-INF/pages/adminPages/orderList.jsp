@@ -15,11 +15,14 @@
     <title>Title</title>
 </head>
 <body>
+<%--<div id="logout">--%>
+    <%--<a href="/logout">Logout</a>--%>
+<%--</div>--%>
 <div id="orderList">
     <p>Orders</p>
     <c:forEach var="order" items="${orderList}">
         <div class="productInAllListDiv">
-            <span class="orderDateInAllList"><a href="/order?id=${order.id}">${order.date} - </a></span>
+            <span class="orderDateInAllList"><a href="/admin/order?id=${order.id}">${order.date} - </a></span>
             <span class="orderFirstNameInAllList">${order.firstName} - </span>
             <span class="orderSecondNameInAllList">${order.secondName} - </span>
             <span class="orderStatusInAllList">${order.orderStatus} - </span>

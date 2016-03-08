@@ -95,7 +95,9 @@ public class BasketController {
             orderedProduct.setNumber(Integer.parseInt(numbers[i]));
             orderedProduct.setName(names[i]);
             orderedProduct.setVendorCode(vendorCodes[i]);
-            orderedProduct.setPrice(Double.parseDouble(prices[i]));
+            if (!prices[i].isEmpty() && prices[i] != null) {
+                orderedProduct.setPrice(Double.parseDouble(prices[i]));
+            }
             orderedProduct.setCurrency(Currency.valueOf(currencies[i]));
             orderedProduct.setAvailability(Availability.valueOf(availStatuses[i]));
             orderedProduct.setOrder(order);

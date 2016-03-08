@@ -22,7 +22,7 @@ public class OrderController {
     @Autowired
     OrderService orderService;
 
-    @RequestMapping(value = "/order", method = RequestMethod.GET)
+    @RequestMapping(value = "/admin/order", method = RequestMethod.GET)
     public ModelAndView showOrder(HttpServletRequest request,
                                   @RequestParam(required = true) Integer id) throws SQLException {
         Order order = orderService.getByIdWithProductList(id);

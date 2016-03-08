@@ -30,7 +30,7 @@ public class ProductBuildController {
     @Autowired
     CategoryService categoryService;
 
-    @RequestMapping(value = "/productBuilder", method = RequestMethod.GET)
+    @RequestMapping(value = "/admin/productBuilder", method = RequestMethod.GET)
     public ModelAndView showCategoryBuilder(HttpServletRequest request) throws SQLException {
         List<Category> categoryList = categoryService.getAll();
         ModelAndView modelAndView = new ModelAndView(JspPath.PRODUCT_BUILDER);
@@ -41,7 +41,7 @@ public class ProductBuildController {
         return modelAndView;
     }
 
-    @RequestMapping(value = "/saveProduct", method = RequestMethod.POST)
+    @RequestMapping(value = "/admin/saveProduct", method = RequestMethod.POST)
     public String saveCategory(HttpServletRequest request,
                                @RequestParam(required = false) Integer categoryID,
                                @ModelAttribute Product product,
@@ -53,7 +53,7 @@ public class ProductBuildController {
         productService.insert(product);
         productContent.setProduct(product);
         productContentService.insert(productContent);
-        return "redirect:/productBuilder";
+        return "redirect:/admin/productBuilder";
     }
 
 }

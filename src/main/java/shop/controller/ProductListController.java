@@ -48,8 +48,8 @@ public class ProductListController {
             filter = new ProductFilter();
             filter.setPage(0);
             filter.setNumber(10);
-            filter.setCategory(5);
-            filter.setAvailability("Is avail");
+            filter.setCategory(category.getId());
+            filter.setAvailability("");
             filter.setSearch("");
             filter.setVendor("");
             filter.setSorting("");

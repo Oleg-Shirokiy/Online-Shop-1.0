@@ -45,6 +45,10 @@ public class CategoryServiceImpl extends BaseService<Category, CategoryDao> impl
 
     }
 
+    public List<Category> getByParentCategoryId(Integer categoryId) {
+        return dao.findByParentCategoryId(categoryId);
+    }
+
 //    public Category getByProductWithAttributeTemplateList(Product product) {
 //        Category category = dao.findByProduct(product);
 //        List<AttributeTemplate> attributeTemplates = category.getAttributeTemplateList();

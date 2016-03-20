@@ -14,7 +14,7 @@ public interface CategoryService extends Service<Category> {
     Category getByLevel(Integer level);
     Category getByParentCategoryLevel(Integer level);
     Category getByIdWithAttributeTemplateList(Integer id);
-//    List<Category> getByParentCategory(Category category);
+    List<Category> getByParentCategoryId(Integer categoryId);
 //    Category getByProductWithAttributeTemplateList(Integer id);
 
 }

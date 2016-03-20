@@ -59,13 +59,16 @@ public class ProductListController {
             session.setAttribute("productFilter", filter);
         }
 
+
         if (display != null) {
             if (display.equals("allProducts")) {
                 filter.setCategory(null);
             } else if (display.equals("byCategories")) {
                 filter.setCategory(categoryService.getByLevel(0).getId());
+
             }
         }
+        List<Category> categoryList = categoryService.getByParentCategoryId(filter.getCategory());
 
         ModelAndView modelAndView = new ModelAndView(JspPath.PRODUCT_LIST);
 
@@ -78,7 +81,6 @@ public class ProductListController {
             modelAndView.addObject("productList", productPage.getContent());
         }
 
-        List<Category> categoryList = categoryService.getAll();
         List<Availability> availabilityList = availabilityService.getAll();
         List<Vendor> vendorList = vendorService.getAll();
         modelAndView.addObject("categoryList", categoryList);

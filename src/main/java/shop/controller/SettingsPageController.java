@@ -119,8 +119,7 @@ public class SettingsPageController {
      * @throws SQLException
      */
     @RequestMapping(value = "/admin/saveOrderStatus", method = RequestMethod.POST)
-    public String saveOrderStatus(
-                                 @ModelAttribute OrderStatus orderStatus,
+    public String saveOrderStatus(@ModelAttribute OrderStatus orderStatus,
                                  @RequestParam(required = false) Integer id) throws SQLException {
         if (id == null) {
             orderStatusService.insert(orderStatus);

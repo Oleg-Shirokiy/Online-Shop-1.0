@@ -23,9 +23,15 @@ public class AttributeTemplateController {
     @Autowired
     AttributeTemplateService attributeTemplateService;
 
+    /**
+     * It allows to view attribute template page. On this page we can see list of attribute templates,
+     * add new and edit existing templates.
+     * @param id - attribute template identifier to show page in edit mode
+     * @return
+     * @throws SQLException
+     */
     @RequestMapping(name = "/admin/attributeBuilder", method = RequestMethod.GET)
-    public ModelAndView showAttributeTemplateBuilder(HttpServletRequest request,
-                                                     @RequestParam(required = false) Integer id) throws SQLException {
+    public ModelAndView showAttributeTemplateBuilder(@RequestParam(required = false) Integer id) throws SQLException {
         ModelAndView modelAndView = new ModelAndView(JspPath.ATTRIBUTE_TEMPLATE_BUILDER);
 
         List<AttributeTemplate> attributeTemplateList = attributeTemplateService.getAll();
@@ -38,9 +44,16 @@ public class AttributeTemplateController {
 
         return modelAndView;
     }
+
+    /**
+     * It allows to create new attribute template or update existing.
+     * @param template - the existed attribute template will be updated if template have id.
+     *                   The new template will by created if id is absent.
+     * @return
+     * @throws SQLException
+     */
     @RequestMapping(name = "/admin/addAttributeTemplate", method = RequestMethod.POST)
-    public String addAttributeTemplate(HttpServletRequest request,
-                                       @ModelAttribute AttributeTemplate template) throws SQLException {
+    public String addAttributeTemplate(@ModelAttribute AttributeTemplate template) throws SQLException {
         if (template.getId() != null) {
             attributeTemplateService.update(template);
         } else {

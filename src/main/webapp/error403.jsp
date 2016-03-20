@@ -10,7 +10,7 @@
 <head>
     <title>Error 403</title>
 </head>
-<body>
+<body background="http://www.404notfound.fr/assets/images/pages/img/darkpony.jpg">
 HTTP Status 403 - Access is denied
 </body>
 </html>

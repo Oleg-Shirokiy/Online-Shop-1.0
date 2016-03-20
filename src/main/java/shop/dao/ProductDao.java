@@ -20,15 +20,6 @@ public interface ProductDao extends JpaRepository<Product, Integer> {
     @Query("select p from products p where p.vendorCode = :code")
     public List<Product> findByCode(@Param("code") String vendorCode);
 
-//    @Query("select p from products p where p.name like concat('%', :name, '%')")
-//    public Page<Product> findByName(Pageable pageable, @Param("name") String name);
-//
-//    @Query("select p from products p where p.name like concat('%', :name, '%') order by p.price asc")
-//    public Page<Product> findByNameOrderByPriceAsc(Pageable pageable, @Param("name") String name);
-//
-//    @Query("select p from products p where p.name like concat('%', :name, '%') order by p.price desc")
-//    public Page<Product> findByNameOrderByPriceDesc(Pageable pageable, @Param("name") String name);
-
     @Query("select p from products p where p.name like concat('%', :name, '%') and " +
     "p.category.id = :categoryID and p.vendor.name like :vendor and p.availability.status like :avail and " +
     "p.price between :minPrice and :maxPrice")
@@ -53,7 +44,7 @@ public interface ProductDao extends JpaRepository<Product, Integer> {
     @Query("select p from products p where p.name like concat('%', :name, '%') and " +
             "p.category.id = :categoryID and p.availability.status like :avail and " +
             "p.price between :minPrice and :maxPrice")
-    public Page<Product> findByFilter(Pageable pageable,
+    Page<Product> findByFilter(Pageable pageable,
                                       @Param("name") String name,
                                       @Param("categoryID") Integer categoryID,
                                       @Param("avail") String availability,
@@ -63,7 +54,7 @@ public interface ProductDao extends JpaRepository<Product, Integer> {
     @Query("select p from products p where p.name like concat('%', :name, '%') and " +
             "p.availability.status like :avail and " +
             "p.price between :minPrice and :maxPrice")
-    public Page<Product> findByFilter(Pageable pageable,
+    Page<Product> findByFilter(Pageable pageable,
                                       @Param("name") String name,
                                       @Param("avail") String availability,
                                       @Param("minPrice") Double minPrice,

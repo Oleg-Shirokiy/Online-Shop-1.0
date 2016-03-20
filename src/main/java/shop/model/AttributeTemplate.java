@@ -9,9 +9,6 @@ import javax.persistence.OneToOne;
 @Entity(name = "attribute_templates")
 public class AttributeTemplate extends BaseModel{
 
-//    @OneToOne
-//    Category category;
-
     String name;
     String measurement;
 
@@ -31,11 +28,5 @@ public class AttributeTemplate extends BaseModel{
         this.measurement = measurement;
     }
 
-//    public Category getCategory() {
-//        return category;
-//    }
-//
-//    public void setCategory(Category category) {
-//        this.category = category;
-//    }
+
 }

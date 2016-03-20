@@ -9,5 +9,4 @@ import java.util.List;
  * Created by oleg on 11.03.16.
  */
 public interface AttributeTemplateService extends Service<AttributeTemplate> {
-//    List<AttributeTemplate> getByCategory(Category category);
 }

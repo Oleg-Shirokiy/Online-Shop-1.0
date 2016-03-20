@@ -9,12 +9,8 @@ import java.util.List;
  * Created by oleg on 05.03.16.
  */
 public interface CategoryService extends Service<Category> {
-//    @Override
-//    Category getById(Integer id) throws SQLException;
     Category getByLevel(Integer level);
     Category getByParentCategoryLevel(Integer level);
     Category getByIdWithAttributeTemplateList(Integer id);
     List<Category> getByParentCategoryId(Integer categoryId);
-//    Category getByProductWithAttributeTemplateList(Integer id);
-
 }

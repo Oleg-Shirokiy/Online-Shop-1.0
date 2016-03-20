@@ -36,6 +36,14 @@ public class ProductListController {
     @Autowired
     VendorService vendorService;
 
+    /**
+     * It allows to view product list page and do search.
+     * @param request - need to save filter DTO through the session.
+     * @param display - it allows to setup products display mode - by categories or as one list
+     * @param code - need for search by vendorCode.
+     * @return
+     * @throws SQLException
+     */
     @RequestMapping(value = "/productList", method = RequestMethod.GET)
     public ModelAndView showProductList(HttpServletRequest request,
                                         @RequestParam(required = false) String display,
@@ -97,6 +105,12 @@ public class ProductListController {
         return modelAndView;
     }
 
+    /**
+     * It allows to setup filter DTO from request.
+     * @param request - need to save basket through the session.
+     * @param filterDTO
+     * @return
+     */
     @RequestMapping(value = "/doFilter", method = RequestMethod.GET)
     public String doFilter(HttpServletRequest request,
                            @ModelAttribute ProductFilter filterDTO) {
@@ -104,6 +118,12 @@ public class ProductListController {
         return "redirect:/productList";
     }
 
+    /**
+     * It allows to setup category as filter parameter.
+     * @param request - need to save filter DTO through the session.
+     * @param category - identifier of the category.
+     * @return
+     */
     @RequestMapping(value = "/goTo", method = RequestMethod.GET)
     public String goToCategory(HttpServletRequest request,
                                @RequestParam(required = true) Integer category) {

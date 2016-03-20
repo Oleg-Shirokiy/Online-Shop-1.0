@@ -49,37 +49,9 @@ public class CategoryServiceImpl extends BaseService<Category, CategoryDao> impl
         return dao.findByParentCategoryId(categoryId);
     }
 
-//    public Category getByProductWithAttributeTemplateList(Product product) {
-//        Category category = dao.findByProduct(product);
-//        List<AttributeTemplate> attributeTemplates = category.getAttributeTemplateList();
-//        if (attributeTemplates != null) {
-//            try {
-//                attributeTemplates.size();
-//            } catch (org.hibernate.LazyInitializationException ignore) {
-//                //NOP
-//            }
-//        }
-//        return category;
-//
-//    }
 
     public Category getByParentCategoryLevel(Integer level) {
         return dao.findByParentCategoryLevel(level);
     }
-//    @Override
-//    public Category getById(Integer id) throws SQLException {
-//        if (id != null) {
-//            return super.getById(id);
-//        } else {
-//            Category category = dao.findOne(id);
-//            if (category != null) {
-//                return category;
-//            } else {
-//                category = new Category();
-//                category.setLevel(0);
-//                category.setName("Root category");
-//                return dao.save(category);
-//            }
-//        }
-//    }
+
 }

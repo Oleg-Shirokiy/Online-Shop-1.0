@@ -6,12 +6,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
-import shop.dto.ProductDTO;
 import shop.model.*;
 import shop.service.*;
-import shop.util.FileIOUtil;
 import shop.util.JspPath;
 
 import javax.servlet.http.HttpServletRequest;
@@ -37,6 +34,13 @@ public class ProductBuildController {
     @Autowired
     VendorService vendorService;
 
+    /**
+     * It allows to view product builder page.
+     * @param request - need to save basket through the session.
+     * @param id - product id to show page in edit mode.
+     * @return
+     * @throws SQLException
+     */
     @RequestMapping(value = "/admin/productBuilder", method = RequestMethod.GET)
     public ModelAndView showProductBuilder(HttpServletRequest request,
                                             @RequestParam(required = false) Integer id) throws SQLException {
@@ -63,14 +67,25 @@ public class ProductBuildController {
         return modelAndView;
     }
 
+    /**
+     * It allows to create new product or update already existing
+     * @param categoryID -  the existed product will be updated if id present.
+     *                   The new product will by created if id absent.
+     * @param availabilityID
+     * @param currencyID
+     * @param vendorID
+     * @param product
+     * @param productContent
+     * @return
+     * @throws SQLException
+     * @throws IOException
+     */
     @RequestMapping(value = "/admin/saveProduct", method = RequestMethod.POST)
-    public String saveProduct(HttpServletRequest request,
-//                               @RequestParam(required = false) Integer productID,
+    public String saveProduct(
                                @RequestParam(required = false) Integer categoryID,
                               @RequestParam(required = true) Integer availabilityID,
                               @RequestParam(required = true) Integer currencyID,
                               @RequestParam(required = true) Integer vendorID,
-//                               @RequestParam(required = false) MultipartFile image,
                                @ModelAttribute Product product,
                                @ModelAttribute ProductContent productContent) throws SQLException, IOException {
         Category category = null;
@@ -88,9 +103,7 @@ public class ProductBuildController {
         Vendor vendor = vendorService.getById(vendorID);
         product.setVendor(vendor);
 
-//        FileIOUtil ioUtil = new FileIOUtil();
-//        String imageFile = ioUtil.saveFile(image);
-//        product.setImageFile(imageFile);
+
         if (product.getId() == null) {
             productService.insert(product);
             productContent.setProduct(product);

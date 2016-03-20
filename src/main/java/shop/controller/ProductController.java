@@ -25,8 +25,15 @@ public class ProductController {
     @Autowired
     ProductContentService productContentService;
 
+    /**
+     * It allows to view product page
+     * @param request  - need to save basket through the session.
+     * @param id
+     * @return
+     * @throws SQLException
+     */
     @RequestMapping(value = "/product", method = RequestMethod.GET)
-    public ModelAndView showProductBuilder(HttpServletRequest request,
+    public ModelAndView showProduct(HttpServletRequest request,
                                             @RequestParam(required = false) Integer id) throws SQLException {
         Product product = productService.getById(id);
         ModelAndView modelAndView = new ModelAndView(JspPath.PRODUCT);
@@ -35,13 +42,7 @@ public class ProductController {
         return modelAndView;
     }
 
-    public String editProduct(HttpServletRequest request,
-                              @RequestParam(required = true) Integer id) {
-
-        return "redirect:/admin/productBuilder?id=" + id;
-    }
-
-    public String deleteProduct(HttpServletRequest request,
+    public String deleteProduct(
                                 @RequestParam(required = true) Integer id) throws SQLException {
         Product product = productService.getById(id);
         ProductContent productContent = productContentService.getByProduct(product);

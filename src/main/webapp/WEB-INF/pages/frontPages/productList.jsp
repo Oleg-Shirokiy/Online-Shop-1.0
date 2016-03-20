@@ -30,7 +30,7 @@
                 ${category.level}-lvl: ${category.name}
                         </a>
                     <sec:authorize access="hasRole('ROLE_ADMIN')">
-                        <form:form method="get" action="admin/editCategory">
+                        <form:form method="get" action="admin/categoryBuilder">
                             <input type="hidden" name="categoryId" value="${category.id}">
                             <input type="submit" value="Edit">
                         </form:form>

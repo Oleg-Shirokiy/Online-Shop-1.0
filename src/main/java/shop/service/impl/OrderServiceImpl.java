@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 import shop.dao.OrderDao;
 import shop.model.Order;
 import shop.service.OrderService;
-import shop.util.MailMail;
+import shop.util.MailUtil;
 
 /**
  * Created by oleg on 05.03.16.
@@ -14,7 +14,7 @@ import shop.util.MailMail;
 public class OrderServiceImpl extends BaseService<Order, OrderDao> implements OrderService {
 
     @Autowired
-    private MailMail mailMail;
+    private MailUtil mailUtil;
 
     private String senderEmail = "oleg.shirokiy.it@gmail.com";
     private String subject = "Order";
@@ -29,21 +29,22 @@ public class OrderServiceImpl extends BaseService<Order, OrderDao> implements Or
         dao.save(order);
         String email = order.getEmail();
         if (email != null) {
-            mailMail.sendMessage(senderEmail, email, subject,
+            mailUtil.sendMessage(senderEmail, email, subject,
                                         getTextByOrder(order));
         }
         return order;
     }
     private String getTextByOrder(Order order) {
+
         return "You ordered something in our shop.. congratulation!";
     }
 
-    public MailMail getMailMail() {
-        return mailMail;
+    public MailUtil getMailUtil() {
+        return mailUtil;
     }
 
-    public void setMailMail(MailMail mailMail) {
-        this.mailMail = mailMail;
+    public void setMailUtil(MailUtil mailUtil) {
+        this.mailUtil = mailUtil;
     }
 
 }

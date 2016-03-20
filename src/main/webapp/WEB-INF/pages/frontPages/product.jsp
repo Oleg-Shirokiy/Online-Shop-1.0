@@ -12,11 +12,11 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>${product.name}</title>
 </head>
 <body>
 <p><a href="/">Home</a></p>
-<div id="basketPanel">
+<div id="basket-panel">
     <a href="/showBasket">Basket: ${basket.size()}</a>
 </div>
 <div id="product">
@@ -28,44 +28,44 @@
             <input type="submit" value="Add to basket">
         </span>
     </form:form>
-    <div class="productAttribute">
-        <span class="productAttributeContent">category: ${product.category.categoryName}</span>
+    <div class="product-attribute">
+        <span class="product-attribute-content">category: ${product.category.name}</span>
     </div>
-    <div class="productAttribute">
-        <span class="productAttributeContent">vendorCode: ${product.vendorCode}</span>
+    <div class="product-attribute">
+        <span class="product-attribute-content">vendorCode: ${product.vendorCode}</span>
     </div>
-    <div class="productAttribute">
-        <span class="productAttributeContent">name: ${product.name}</span>
+    <div class="product-attribute">
+        <span class="product-attribute-content">name: ${product.name}</span>
     </div>
-    <div class="productAttribute">
-        <span class="productAttributeContent">price: ${product.price}</span>
+    <div class="product-attribute">
+        <span class="product-attribute-content">price: ${product.price}</span>
     </div>
-    <div class="productAttribute">
-        <span class="productAttributeContent">currency: ${product.currency}</span>
+    <div class="product-attribute">
+        <span class="product-attribute-content">currency: ${product.currency}</span>
     </div>
-    <div class="productAttribute">
-        <span class="productAttributeContent">imageLink: ${product.imageLink}</span>
+    <div class="product-attribute">
+        <span class="product-attribute-content">imageFile: ${product.imageLink}</span>
     </div>
-    <div class="productAttribute">
-        <span class="productAttributeContent">availability: ${product.availability}</span>
+    <div class="product-attribute">
+        <span class="product-attribute-content">availability: ${product.availability}</span>
     </div>
-    <div class="productAttribute">
-        <span class="productAttributeContent">vendor: ${product.vendor}</span>
+    <div class="product-attribute">
+        <span class="product-attribute-content">vendor: ${product.vendor}</span>
     </div>
-    <div class="productAttribute">
-        <span class="productAttributeContent">keyWords: ${product.keyWords}</span>
+    <div class="product-attribute">
+        <span class="product-attribute-content">keyWords: ${product.keyWords}</span>
     </div>
-    <div class="productAttribute">
-        <span class="productAttributeContent">description: ${productContent.description}</span>
+    <div class="product-attribute">
+        <span class="product-attribute-content">description: ${productContent.description}</span>
     </div>
-    <div class="productAttribute">
-        <span class="productAttributeContent">imageLinks: ${productContent.imageLinks}</span>
+    <div class="product-attribute">
+        <span class="product-attribute-content">imageLinks: ${productContent.imageLinks}</span>
     </div>
-    <div class="productAttribute">
-        <span class="productAttributeContent">exCategoryID: ${product.exCategoryID}</span>
+    <div class="product-attribute">
+        <span class="product-attribute-content">exCategoryID: ${product.exCategoryID}</span>
     </div>
-    <div class="productAttribute">
-        <span class="productAttributeContent">exProductID: ${product.exProductID}</span>
+    <div class="product-attribute">
+        <span class="product-attribute-content">exProductID: ${product.exProductID}</span>
     </div>
 </div>
 

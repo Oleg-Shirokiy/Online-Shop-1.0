@@ -1,3 +1,5 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%--
   Created by IntelliJ IDEA.
   User: oleg
@@ -8,9 +10,17 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>Error 404</title>
 </head>
 <body>
-
+<p><a href="/">Home</a></p>
+Error 404 - page is not available
+<!--
+Failed URL: ${url}
+Exception: ${exception.message}
+<c:forEach items="${exception.stackTrace}" var="stackTrace">
+    ${stackTrace}
+</c:forEach>
+-->
 </body>
 </html>

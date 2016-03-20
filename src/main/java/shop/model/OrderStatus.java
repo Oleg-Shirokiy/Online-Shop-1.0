@@ -1,14 +1,20 @@
 package shop.model;
 
+import javax.persistence.Entity;
+
 /**
  * Created by oleg on 05.03.16.
  */
-public enum OrderStatus {
-    NEW,
-    ACCEPTED,
-    CLOSED;
+@Entity(name = "order_statuses")
+public class OrderStatus extends BaseModel {
+    private String status;
 
-    OrderStatus() {
-
+    public String getStatus() {
+        return status;
     }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
 }

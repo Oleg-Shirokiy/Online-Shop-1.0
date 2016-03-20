@@ -14,14 +14,20 @@ public class Product extends BaseModel {
     private String name;
     private Double price;
 
-    @Enumerated(EnumType.STRING)
+    @ManyToOne
+    @JoinColumn(name = "currency_id")
     private Currency currency;
 
     private String imageLink;
+//    private String imageFile;
 
-    @Enumerated(EnumType.STRING)
+    @ManyToOne
+    @JoinColumn(name = "availability_id")
     private Availability availability;
-    private String vendor;
+
+    @ManyToOne
+    @JoinColumn(name = "vendor_id")
+    private Vendor vendor;
     private String keyWords;
 
     private String exCategoryID;
@@ -75,6 +81,14 @@ public class Product extends BaseModel {
         this.imageLink = imageLink;
     }
 
+//    public String getImageFile() {
+//        return imageFile;
+//    }
+//
+//    public void setImageFile(String imageFile) {
+//        this.imageFile = imageFile;
+//    }
+
     public Availability getAvailability() {
         return availability;
     }
@@ -83,11 +97,11 @@ public class Product extends BaseModel {
         this.availability = availability;
     }
 
-    public String getVendor() {
+    public Vendor getVendor() {
         return vendor;
     }
 
-    public void setVendor(String vendor) {
+    public void setVendor(Vendor vendor) {
         this.vendor = vendor;
     }
 

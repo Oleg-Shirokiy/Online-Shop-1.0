@@ -1,5 +1,7 @@
 package shop.service;
 
+import org.springframework.data.domain.Page;
+import shop.dto.ProductFilter;
 import shop.model.Product;
 
 import java.util.List;
@@ -9,4 +11,6 @@ import java.util.List;
  */
 public interface ProductService extends Service<Product>{
     List<Product> getByIdList(List<Integer> idList);
+    List<Product> getByCode(String vendorCode);
+    Page<Product> getByFilter(ProductFilter filter);
 }

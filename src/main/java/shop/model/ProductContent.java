@@ -2,6 +2,7 @@ package shop.model;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by oleg on 05.03.16.
@@ -15,7 +16,7 @@ public class ProductContent extends BaseModel{
     private String imageLinks;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "productContent", fetch = FetchType.LAZY)
-    List<Attribute> attributes;
+    Set<Attribute> attributes;
 
     public Product getProduct() {
         return product;
@@ -41,11 +42,11 @@ public class ProductContent extends BaseModel{
         this.imageLinks = imageLinks;
     }
 
-    public List<Attribute> getAttributes() {
+    public Set<Attribute> getAttributes() {
         return attributes;
     }
 
-    public void setAttributes(List<Attribute> attributes) {
+    public void setAttributes(Set<Attribute> attributes) {
         this.attributes = attributes;
     }
 

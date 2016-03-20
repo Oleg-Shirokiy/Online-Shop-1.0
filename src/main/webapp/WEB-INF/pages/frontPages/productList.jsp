@@ -7,34 +7,113 @@
 --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>Product list</title>
 </head>
 <body>
-<p><a href="/">Home</a></p>
-<div id="basketPanel">
-    <a href="/showBasket">Basket: ${basket.size()}</a>
+<div id="header">
+    <p><a href="/">Home</a></p>
+    <div id="basket-panel" style="float: left">
+        <a href="/showBasket">Basket: ${basket.size()}</a>
+    </div>
 </div>
-    <div id="allCategories">
+    <div id="all-categories" style="margin: 5%; border: 1px solid black">
         <p>Categories</p>
         <c:forEach var="category" items="${categoryList}">
-            <div class="categoryInAllListDiv">
-                <span class="categoryInAllListSpan">${category.level}-lvl: ${category.categoryName}</span></div>
+            <div class="category-in-all-list-div">
+                <span class="categoryInAllListSpan">
+                    <a href="/goTo?category=${category.id}">
+                ${category.level}-lvl: ${category.name}
+                        </a>
+                    <sec:authorize access="hasRole('ROLE_ADMIN')">
+                        <form:form method="get" action="admin/editCategory">
+                            <input type="hidden" name="categoryId" value="${category.id}">
+                            <input type="submit" value="Edit">
+                        </form:form>
+                        <form:form method="get" action="admin/deleteCategory">
+                            <input type="hidden" name="categoryId" value="${category.id}">
+                            <input type="submit" value="Delete">
+                        </form:form>
+                    </sec:authorize>
+                </span></div>
         </c:forEach>
     </div>
-<div id="allProducts">
+<div id="product-list-side-panel" style="margin: 10%; border: 1px solid black">
+    <div id="display-mode-change-panel">
+        <a href="/productList?display=byCategories">By categories</a>
+        <a href="/productList?display=allProducts">Al products</a>
+    </div>
+    <div id="quick-search" style="margin: 5%; border: 1px solid black">
+        <p class="filter-input-sign">Search for code..</p>
+        <form:form method="get" action="/productList" modelAttribute="filterDTO">
+            <input type="text" name="code" value="">
+            <input type="submit" value="Search">
+        </form:form>
+    </div>
+    <div id="filter-panel" style="margin: 10%; border: 1px solid black">
+        <form:form method="get" action="/doFilter" modelAttribute="filterDTO">
+            <div class="filter">
+                <input type="submit" value="Filter">
+            </div>
+            <div class="filter">
+                <p class="filter-input-sign">Search for name..</p>
+                <input type="text" name="search" value="${filter.search}">
+            </div>
+            <div class="filter">
+                <p class="filter-input-sign">Search for vendor..</p>
+                <select name="vendor" size="1">
+                    <option value="${filter.vendor}">${filter.vendor}</option>
+                    <c:forEach var="vendor" items="${vendorList}">
+                        <option value="${vendor.name}">${vendor.name}</option>
+                    </c:forEach>
+                </select>
+            </div>
+            <div class="filter">
+                <p class="filter-input-sign">Sorting</p>
+                <select name="sorting" size="1">
+                    <option value="${filter.sorting}">${filter.sorting}</option>
+                    <c:forEach var="sorting" items="${sortingEnum}">
+                        <option value="${sorting}">${sorting}</option>
+                    </c:forEach>
+                </select>
+            </div>
+            <div class="filter">
+                <p class="filter-input-sign">Availability</p>
+                <select name="availability" size="1">
+                    <option value="${filter.availability}">${filter.availability}</option>
+                    <c:forEach var="availability" items="${availabilityList}">
+                        <option value="${availability.status}">${availability.status}</option>
+                    </c:forEach>
+                </select>
+            </div>
+            <div class="filter">
+                <p class="filter-input-sign">Min price</p>
+                <input type="number" min="0" step="0.01" name="minPrice" value="${filter.minPrice}">
+                <p class="filter-input-sign">Max price</p>
+                <input type="number" min="0" step="0.01" name="maxPrice" value="${filter.maxPrice}">
+            </div>
+
+            <input type="hidden" name="category" value="${filter.category}">
+            <input type="hidden" name="page" value="${filter.page}">
+            <input type="hidden" name="number" value="${filter.number}">
+
+        </form:form>
+    </div>
+</div>
+<div id="all-products" style="margin: 5%; border: 1px solid black">
     <p>Products</p>
     <c:forEach var="product" items="${productList}">
-        <div class="productInAllListDiv">
-            <span class="productNameInAllList"><a href="/product?id=${product.id}">${product.name} - </a></span>
-            <span class="productCodeInAllList">${product.vendorCode} - </span>
-            <span class="productAvailInAllList">${product.availability} - </span>
-            <span class="productPriceInAllList">${product.price} - </span>
-            <span class="productCurrencyInAllList">${product.currency} - </span>
-            <span class="productCategoryInAllList">in: ${product.category.categoryName}</span>
+        <div class="product-in-all-list-div">
+            <span class="product-Name-in-all-list-span"><a href="/product?id=${product.id}">${product.name} - </a></span>
+            <span class="product-code-in-all-list-span">${product.vendorCode} - </span>
+            <span class="product-avail-in-all-list-span">${product.availability.status} - </span>
+            <span class="product-price-in-all-list-span">${product.price} - </span>
+            <span class="product-currency-in-all-list-span">${product.currency.name} - </span>
+            <span class="product-category-in-all-list-span">in: ${product.category.name}</span>
             <form:form method="post" action="/addToBasket">
                 <input type="hidden" name="id" value="${product.id}">
                 <input type="hidden" name="redirect" value="/productList">
@@ -43,8 +122,19 @@
                     <input type="submit" value="Add to basket">
                     </span>
             </form:form>
+            <sec:authorize access="hasRole('ROLE_ADMIN')">
+                <form:form method="get" action="/admin/productBuilder">
+                    <input type="hidden" name="id" value="${product.id}">
+                    <input type="submit" value="Edit">
+                </form:form>
+                <form:form method="get" action="admin/deleteProduct">
+                    <input type="hidden" name="id" value="${product.id}">
+                    <input type="submit" value="Delete">
+                </form:form>
+            </sec:authorize>
         </div>
     </c:forEach>
 </div>
+
 </body>
 </html>

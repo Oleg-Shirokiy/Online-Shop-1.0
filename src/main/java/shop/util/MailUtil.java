@@ -8,7 +8,7 @@ package shop.util;
  */
 
 //@Component
-public class MailMail {
+public class MailUtil {
 
     private MailSender mailSender;
 

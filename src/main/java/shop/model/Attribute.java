@@ -10,8 +10,9 @@ public class Attribute extends BaseModel{
     @OneToOne
     ProductContent productContent;
 
-    String name;
-    String measurement;
+    @OneToOne
+    AttributeTemplate attributeTemplate;
+
     String value;
 
     public ProductContent getProductContent() {
@@ -22,20 +23,12 @@ public class Attribute extends BaseModel{
         this.productContent = productContent;
     }
 
-    public String getName() {
-        return name;
+    public AttributeTemplate getAttributeTemplate() {
+        return attributeTemplate;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getMeasurement() {
-        return measurement;
-    }
-
-    public void setMeasurement(String measurement) {
-        this.measurement = measurement;
+    public void setAttributeTemplate(AttributeTemplate attributeTemplate) {
+        this.attributeTemplate = attributeTemplate;
     }
 
     public String getValue() {

@@ -21,7 +21,8 @@ public class Order extends BaseModel{
     private String address;
     private String message;
 
-    @Enumerated(EnumType.STRING)
+    @ManyToOne
+    @JoinColumn(name = "order_status_id")
     private OrderStatus orderStatus;
 
     private Double totalPrice;

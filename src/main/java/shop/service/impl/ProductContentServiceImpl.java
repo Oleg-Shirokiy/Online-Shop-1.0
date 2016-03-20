@@ -2,6 +2,7 @@ package shop.service.impl;
 
 import org.springframework.stereotype.Service;
 import shop.dao.ProductContentDao;
+import shop.model.Product;
 import shop.model.ProductContent;
 import shop.service.ProductContentService;
 
@@ -11,4 +12,7 @@ import shop.service.ProductContentService;
 @Service
 public class ProductContentServiceImpl extends BaseService<ProductContent, ProductContentDao>
         implements ProductContentService {
+    public ProductContent getByProduct(Product product) {
+        return dao.findByProduct(product);
+    }
 }

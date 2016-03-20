@@ -1,6 +1,8 @@
 package shop.model;
 
 import javax.persistence.*;
+import java.util.List;
+
 /**
  * Created by oleg on 05.03.16.
  */
@@ -11,7 +13,10 @@ public class Category extends BaseModel{
 
     int level;
     private String exCategoryID;
-    private String categoryName;
+    private String name;
+
+    @ManyToMany
+    private List<AttributeTemplate> attributeTemplateList;
 
     public int getLevel() {
         return level;
@@ -29,12 +34,12 @@ public class Category extends BaseModel{
         this.exCategoryID = exCategoryID;
     }
 
-    public String getCategoryName() {
-        return categoryName;
+    public String getName() {
+        return name;
     }
 
-    public void setCategoryName(String categoryName) {
-        this.categoryName = categoryName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public Category getParentCategory() {
@@ -45,5 +50,12 @@ public class Category extends BaseModel{
         this.parentCategory = parentCategory;
     }
 
+    public List<AttributeTemplate> getAttributeTemplateList() {
+        return attributeTemplateList;
+    }
+
+    public void setAttributeTemplateList(List<AttributeTemplate> attributeTemplateList) {
+        this.attributeTemplateList = attributeTemplateList;
+    }
 
 }

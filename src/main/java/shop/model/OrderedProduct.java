@@ -18,10 +18,12 @@ public class OrderedProduct extends BaseModel {
     Double price;
     Integer number;
 
-    @Enumerated(EnumType.STRING)
+    @ManyToOne
+    @JoinColumn(name = "currency_id")
     private Currency currency;
 
-    @Enumerated(EnumType.STRING)
+    @ManyToOne
+    @JoinColumn(name = "availability_id")
     private Availability availability;
 
     public Order getOrder() {

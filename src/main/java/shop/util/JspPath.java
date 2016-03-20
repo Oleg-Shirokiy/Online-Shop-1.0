@@ -12,4 +12,9 @@ public class JspPath {
     public static final String BASKET = "/frontPages/basket";
     public static final String ORDER = "/adminPages/order";
     public static final String ORDER_LIST = "/adminPages/orderList";
+    public static final String DEFAULT_ERROR_VIEW = "/frontPages/error";
+    public static final String SETTINGS = "/adminPages/settings";
+    public static final String ATTRIBUTE_FORM = "/adminPages/attributeForm";
+    public static final String ATTRIBUTE_TEMPLATE_BUILDER = "/adminPages/attributeTemplateBuilder";
+    public static final String VENDORS = "/adminPages/vendorList";
 }

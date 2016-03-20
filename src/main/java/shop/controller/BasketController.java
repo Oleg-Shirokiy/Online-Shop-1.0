@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import shop.model.*;
 import shop.model.Currency;
+import shop.service.AvailabilityService;
+import shop.service.CurrencyService;
 import shop.service.OrderService;
 import shop.service.ProductService;
 import shop.util.JspPath;
@@ -27,6 +29,10 @@ public class BasketController {
     ProductService productService;
     @Autowired
     OrderService orderService;
+    @Autowired
+    CurrencyService currencyService;
+    @Autowired
+    AvailabilityService availabilityService;
 
     @RequestMapping(value = "/addToBasket", method = RequestMethod.POST)
     public String addToBasket(HttpServletRequest request,
@@ -49,30 +55,38 @@ public class BasketController {
 
     @RequestMapping(value = "/showBasket", method = RequestMethod.GET)
     public ModelAndView showBasket(HttpServletRequest request) throws SQLException {
-        Map<Integer, Integer> basket = (Map)request.getSession().getAttribute("basket");
-        List<Integer> idList = new ArrayList<>(basket.keySet());
-        List<Product> productList = productService.getByIdList(idList);
-
-        Order order = new Order();
-        Integer number = 0;
-        Double price = 0.;
-
-        for (Product product : productList) {
-            Integer currentNumber = basket.get(product.getId());
-            Double currentPrice = product.getPrice();
-
-            number += currentNumber;
-            if (currentPrice != null) {
-                price += currentPrice * currentNumber;
-            }
-        }
-        order.setTotalPrice(price);
-        order.setTotalNumber(number);
 
         ModelAndView modelAndView = new ModelAndView(JspPath.BASKET);
-        modelAndView.addObject("order", order);
-        modelAndView.addObject("basket", basket);
-        modelAndView.addObject("productList", productList);
+        HttpSession session = request.getSession();
+        Map<Integer, Integer> basket = (Map)session.getAttribute("basket");
+
+        if (basket != null && basket.size() != 0) {
+
+            List<Integer> idList = new ArrayList<>(basket.keySet());
+            List<Product> productList = productService.getByIdList(idList);
+
+            Order order = new Order();
+            Integer number = 0;
+            Double price = 0.;
+
+            for (Product product : productList) {
+                Integer currentNumber = basket.get(product.getId());
+                Double currentPrice = product.getPrice();
+
+                number += currentNumber;
+                if (currentPrice != null) {
+                    price += currentPrice * currentNumber;
+                }
+            }
+            order.setTotalPrice(price);
+            order.setTotalNumber(number);
+
+
+            modelAndView.addObject("order", order);
+            modelAndView.addObject("basket", basket);
+            modelAndView.addObject("productList", productList);
+        }
+
         return modelAndView;
     }
 
@@ -80,6 +94,9 @@ public class BasketController {
     public String saveOrder(HttpServletRequest request,
                             @ModelAttribute Order order
     ) throws SQLException {
+        Map<String, Currency> currencyMap = currencyService.getAllAsMap();
+        Map<String, Availability> availabilityMap = availabilityService.getAllAsMap();
+
         String[] iDs = request.getParameterValues("id");
         String[] numbers = request.getParameterValues("number");
         String[] names = request.getParameterValues("name");
@@ -95,9 +112,11 @@ public class BasketController {
             orderedProduct.setNumber(Integer.parseInt(numbers[i]));
             orderedProduct.setName(names[i]);
             orderedProduct.setVendorCode(vendorCodes[i]);
-            orderedProduct.setPrice(Double.parseDouble(prices[i]));
-            orderedProduct.setCurrency(Currency.valueOf(currencies[i]));
-            orderedProduct.setAvailability(Availability.valueOf(availStatuses[i]));
+            if (!prices[i].isEmpty() && prices[i] != null) {
+                orderedProduct.setPrice(Double.parseDouble(prices[i]));
+            }
+            orderedProduct.setCurrency(currencyMap.get(currencies[i]));
+            orderedProduct.setAvailability(availabilityMap.get(availStatuses[i]));
             orderedProduct.setOrder(order);
             orderedProductList.add(orderedProduct);
         }

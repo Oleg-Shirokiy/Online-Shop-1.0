@@ -2,12 +2,15 @@ package shop.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import shop.model.Order;
+import shop.model.OrderStatus;
 import shop.service.OrderService;
+import shop.service.OrderStatusService;
 import shop.util.JspPath;
 
 import javax.servlet.http.HttpServletRequest;
@@ -22,7 +25,7 @@ public class OrderController {
     @Autowired
     OrderService orderService;
 
-    @RequestMapping(value = "/order", method = RequestMethod.GET)
+    @RequestMapping(value = "/admin/order", method = RequestMethod.GET)
     public ModelAndView showOrder(HttpServletRequest request,
                                   @RequestParam(required = true) Integer id) throws SQLException {
         Order order = orderService.getByIdWithProductList(id);
@@ -30,4 +33,15 @@ public class OrderController {
         modelAndView.addObject("order", order);
         return modelAndView;
     }
+
+    @RequestMapping(value = "/admin/orderList", method = RequestMethod.GET)
+    public ModelAndView showOrderList(HttpServletRequest request) throws SQLException {
+        List<Order> orderList = orderService.getAll();
+        ModelAndView modelAndView = new ModelAndView(JspPath.ORDER_LIST);
+        modelAndView.addObject("orderList", orderList);
+        return modelAndView;
+    }
+
+
+
 }

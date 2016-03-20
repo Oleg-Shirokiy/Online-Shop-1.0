@@ -11,39 +11,40 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>Basket</title>
 </head>
 <body>
+<p><a href="/">Home</a></p>
 <form:form method="post" action="/saveOrder" modelAttribute="order">
-<div id="basketForm">
+<div id="basket-form">
 
-        <div class="basketInput">
-            <span class="basketInputSign">firstName: </span>
+        <div class="basket-input">
+            <span class="basket-input-sign">firstName: </span>
             <input type="text" name="firstName" value="">
         </div>
 
-        <div class="basketInput">
-            <span class="basketInputSign">secondName: </span>
+        <div class="basket-input">
+            <span class="basket-input-sign">secondName: </span>
             <input type="text" name="secondName" value="">
         </div>
 
-        <div class="basketInput">
-            <span class="basketInputSign">phoneNumber: </span>
+        <div class="basket-input">
+            <span class="basket-input-sign">phoneNumber: </span>
             <input type="text" name="phoneNumber" value="">
         </div>
 
-        <div class="basketInput">
-            <span class="basketInputSign">email: </span>
+        <div class="basket-input">
+            <span class="basket-input-sign">email: </span>
             <input type="text" name="email" value="">
         </div>
 
-        <div class="basketInput">
-            <span class="basketInputSign">address: </span>
+        <div class="basket-input">
+            <span class="basket-input-sign">address: </span>
             <input type="text" name="address" value="">
         </div>
 
-        <div class="basketInput">
-            <span class="basketInputSign">message: </span>
+        <div class="basket-input">
+            <span class="basket-input-sign">message: </span>
             <input type="text" name="message" value="">
         </div>
 
@@ -51,33 +52,33 @@
 
 </div>
 
-<div id="productListInBasket">
+<div id="product-list-in-basket">
     <c:forEach var="product" items="${productList}">
-        <div class="productInBasket">
-            <span class="productNameInBasket"><a href="/product?id=${product.id}">${product.name} - </a></span>
-            <span class="productCodeInBasket">${product.vendorCode} - </span>
-            <span class="productAvailInBasket">${product.availability} - </span>
-            <span class="productPriceInBasket">${product.price} - </span>
-            <span class="productCurrencyInBasket">${product.currency} - </span>
-            <span class="productCategoryInBasket">in: ${product.category.categoryName}</span>
+        <div class="product-in-basket">
+            <span class="product-name-in-basket"><a href="/product?id=${product.id}">${product.name} - </a></span>
+            <span class="product-code-in-basket">${product.vendorCode} - </span>
+            <span class="product-avail-in-basket">${product.availability.status} - </span>
+            <span class="product-price-in-basket">${product.price} - </span>
+            <span class="product-currency-in-basket">${product.currency.name} - </span>
+            <span class="product-category-in-basket">in: ${product.category.name}</span>
 
-            <span class="productNumberInBasket">
+            <span class="product-number-in-basket">
                 <input type="hidden" name="id" value="${product.id}">
                 <input type="number" name="number" cols="3" min="0" value="${basket.get(product.id)}">
                 <input type="hidden" name="name" value="${product.name}">
                 <input type="hidden" name="vendorCode" value="${product.vendorCode}">
                 <input type="hidden" name="price" value="${product.price}">
                 <input type="hidden" name="currency" value="${product.currency}">
-                <input type="hidden" name="availability" value="${product.availability}">
+                <input type="hidden" name="availabilityStatus" value="${product.availabilityStatus}">
             </span>
         </div>
     </c:forEach>
 </div>
 
         </form:form>
-<div id="orderInfo">
-    <p id="productNumber">${order.totalNumber}</p>
-    <p id="totalPrice">${order.totalPrice}</p>
+<div id="order-info">
+    <p id="product-number">${order.totalNumber}</p>
+    <p id="total-price">${order.totalPrice}</p>
 </div>
 </body>
 </html>

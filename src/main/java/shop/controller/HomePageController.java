@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
  */
 @Controller
 public class HomePageController {
+
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public ModelAndView showHomePage(HttpServletRequest request)  {
         ModelAndView modelAndView = new ModelAndView(JspPath.HOME_PAGE);

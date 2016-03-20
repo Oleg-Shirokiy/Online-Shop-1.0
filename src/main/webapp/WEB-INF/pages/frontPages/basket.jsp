@@ -68,8 +68,8 @@
                 <input type="hidden" name="name" value="${product.name}">
                 <input type="hidden" name="vendorCode" value="${product.vendorCode}">
                 <input type="hidden" name="price" value="${product.price}">
-                <input type="hidden" name="currency" value="${product.currency}">
-                <input type="hidden" name="availabilityStatus" value="${product.availabilityStatus}">
+                <input type="hidden" name="currency" value="${product.currency.name}">
+                <input type="hidden" name="availabilityStatus" value="${product.availability.status}">
             </span>
         </div>
     </c:forEach>

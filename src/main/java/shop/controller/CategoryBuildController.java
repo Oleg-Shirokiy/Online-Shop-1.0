@@ -24,6 +24,13 @@ public class CategoryBuildController {
     @Autowired
     AttributeTemplateService attributeTemplateService;
 
+    /**
+     * It allows to view category builder page
+     * @param request - need to save basket through the session.
+     * @param id - category id to show page in edit mode.
+     * @return
+     * @throws SQLException
+     */
     @RequestMapping(value = "/admin/categoryBuilder", method = RequestMethod.GET)
     public ModelAndView showCategoryBuilder(HttpServletRequest request,
                                             @RequestParam(required = false) Integer id) throws SQLException {
@@ -34,13 +41,6 @@ public class CategoryBuildController {
         List<AttributeTemplate> attributeTemplateList = attributeTemplateService.getAll();
         modelAndView.addObject("attributeTemplateList", attributeTemplateList);
 
-//        Category category = null;
-//        if (id != null) {
-//            category = categoryService.getById(id);
-//
-//        } else {
-//            category = categoryService.getById(0);
-//        }
 
         if (id != null) {
             Category category = categoryService.getByIdWithAttributeTemplateList(id);
@@ -51,12 +51,19 @@ public class CategoryBuildController {
         return modelAndView;
     }
 
+    /**
+     * It allows to create new category or update existing.
+     * @param categoryId -  the existed category will be updated if id present.
+     *                   The new category will by created if id absent.
+     * @param name - name of the category
+     * @param parentCategoryId - null value is equivalent of the id of root category
+     * @return
+     * @throws SQLException
+     */
     @RequestMapping(value = "/admin/saveCategory", method = RequestMethod.POST)
-    public String saveCategory(HttpServletRequest request,
-                                @RequestParam(required = false) Integer categoryId,
+    public String saveCategory( @RequestParam(required = false) Integer categoryId,
                                 @RequestParam(required = true) String name,
                                 @RequestParam(required = false) Integer parentCategoryId
-//                                @ModelAttribute Category category
     ) throws SQLException {
         Category parentCategory = null;
         if (parentCategoryId != null) {
@@ -83,9 +90,16 @@ public class CategoryBuildController {
         return "redirect:/admin/categoryBuilder?id=" + category.getId();
     }
 
+    /**
+     * It allows to snap the attribute templates to category or edit already snapped.
+     * @param categoryId
+     * @param attributeTemplateId -  the existed attribute template will be updated if id present.
+     *                   The new template will by created if id absent.
+     * @return
+     * @throws SQLException
+     */
     @RequestMapping(value = "/admin/snapAttributeTemplate", method = RequestMethod.POST)
-    public String snapAttributeTemplate(HttpServletRequest request,
-                                        @RequestParam(required = true) Integer categoryId,
+    public String snapAttributeTemplate(@RequestParam(required = true) Integer categoryId,
                                         @RequestParam(required = true) Integer attributeTemplateId
     ) throws SQLException {
         AttributeTemplate attributeTemplate = attributeTemplateService.getById(attributeTemplateId);

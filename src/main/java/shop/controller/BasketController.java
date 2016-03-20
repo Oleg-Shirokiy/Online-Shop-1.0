@@ -34,6 +34,15 @@ public class BasketController {
     @Autowired
     AvailabilityService availabilityService;
 
+    /**
+     * It allows to add product in basket
+     * @param request - need to save basket through the session.
+     * @param id - product identifier.
+     * @param number - number of product with a specific identifier.
+     * @param redirect
+     * @return
+     * @throws SQLException
+     */
     @RequestMapping(value = "/addToBasket", method = RequestMethod.POST)
     public String addToBasket(HttpServletRequest request,
                               @RequestParam(required = true) Integer id,
@@ -53,6 +62,12 @@ public class BasketController {
         return "redirect:" + redirect;
     }
 
+    /**
+     * It allow to view basket bage
+     * @param request - need to save basket through the session
+     * @return
+     * @throws SQLException
+     */
     @RequestMapping(value = "/showBasket", method = RequestMethod.GET)
     public ModelAndView showBasket(HttpServletRequest request) throws SQLException {
 
@@ -90,6 +105,13 @@ public class BasketController {
         return modelAndView;
     }
 
+    /**
+     * It allow to save order to the DB.
+     * @param request - need to save basket through the session.
+     * @param order - model which contains list of ordered products and info from the buyer.
+     * @return
+     * @throws SQLException
+     */
     @RequestMapping(value = "/saveOrder", method = RequestMethod.POST)
     public String saveOrder(HttpServletRequest request,
                             @ModelAttribute Order order

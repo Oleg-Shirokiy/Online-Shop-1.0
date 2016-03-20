@@ -32,15 +32,16 @@ public class AttributeController {
     @Autowired
     CategoryService categoryService;
 
+
     @RequestMapping(value = "/admin/attributeForm", method = RequestMethod.GET)
-    public ModelAndView showAttributeForm(HttpServletRequest request,
+    public ModelAndView showAttributeForm(
                                           @RequestParam(required = true) Integer id) throws SQLException{
         ModelAndView modelAndView = new ModelAndView(JspPath.ATTRIBUTE_FORM);
 
         Product product = productService.getById(id);
         Category category = categoryService.getByIdWithAttributeTemplateList(product.getCategory().getId());
 
-//        List<AttributeTemplate> attributeTemplateList = attributeTemplateService.getAll();
+
         List<AttributeTemplate> attributeTemplateList = category.getAttributeTemplateList();
         modelAndView.addObject("attributeTemplateList", attributeTemplateList);
 
@@ -63,7 +64,7 @@ public class AttributeController {
         String[] attrMeasurements = request.getParameterValues("attrMeasurement");
         String[] attrValues = request.getParameterValues("attrValue");
 
-//        List<Attribute> newAttributeList = new LinkedList<>();
+
         for (int i = 0; i < attTmpIds.length; i++) {
             AttributeTemplate attributeTemplate = new AttributeTemplate();
             attributeTemplate.setId(Integer.parseInt(attTmpIds[i]));
@@ -72,11 +73,11 @@ public class AttributeController {
             Attribute attribute = new Attribute();
             attribute.setAttributeTemplate(attributeTemplate);
             attribute.setValue(attrTmpValues[i]);
-//            attributeService.insert(attribute);
+
             attributeSet.add(attribute);
         }
 
-//        List<Attribute> attributeList = new LinkedList<>();
+
         for (int i = 0; i < attTmpIds.length; i++) {
             Attribute attribute = attributeService.getById(Integer.parseInt(attTmpIds[i]));
             attribute.setValue(attrValues[i]);
@@ -89,12 +90,3 @@ public class AttributeController {
 
 }
 
-//<input type="hidden" name="attTmpId" value="${attrTmp.id}">
-//<input type="text" name="attrTmpName" value="${attrTmp.name}">
-//<input type="text" name="attrTmpMeasurement" value="${attrTmp.measurement}">
-//<input type="text" name="attrTmpValue">
-
-//<input type="hidden" name="attributeId" value="${attr.id}">
-//<input type="text" name="attrName" value="${attr.name}">
-//<input type="text" name="attrMeasurement" value="${attr.measurement}">
-//<input type="text" name="attrValue" value="${attr.value}">

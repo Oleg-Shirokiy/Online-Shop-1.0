@@ -14,7 +14,11 @@ import javax.servlet.http.HttpServletRequest;
  */
 @Controller
 public class HomePageController {
-
+    /**
+     * It allows to view the home page.
+     * @param request - need to save basket through the session
+     * @return
+     */
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public ModelAndView showHomePage(HttpServletRequest request)  {
         ModelAndView modelAndView = new ModelAndView(JspPath.HOME_PAGE);

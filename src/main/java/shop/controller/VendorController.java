@@ -23,8 +23,14 @@ public class VendorController {
     @Autowired
     VendorService vendorService;
 
+    /**
+     * It allows to show page fore view list of vendors, add new vendors and edit existing
+     * @param id - vendor id to show page in edit mode.
+     * @return
+     * @throws SQLException
+     */
     @RequestMapping(value = "/admin/vendors", method = RequestMethod.GET)
-    public ModelAndView showVendorList(HttpServletRequest request,
+    public ModelAndView showVendorList(
                                      @RequestParam(required = false) Integer id) throws SQLException {
         ModelAndView modelAndView = new ModelAndView(JspPath.VENDORS);
 
@@ -39,9 +45,15 @@ public class VendorController {
         return modelAndView;
     }
 
+    /**
+     * It allows to create new vendor or update
+     * @param vendor - the existed vendor will be updated if vendor have id.
+     *                   The new vendor will by created if id is absent.
+     * @return
+     * @throws SQLException
+     */
     @RequestMapping(value = "/admin/saveVendor", method = RequestMethod.POST)
-    public String saveCurrency(HttpServletRequest request,
-                               @ModelAttribute Vendor vendor) throws SQLException {
+    public String saveCurrency(@ModelAttribute Vendor vendor) throws SQLException {
         if (vendor.getId() == null) {
             vendorService.insert(vendor);
         } else {

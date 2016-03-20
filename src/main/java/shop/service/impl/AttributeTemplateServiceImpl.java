@@ -14,7 +14,4 @@ import java.util.List;
 @Service
 public class AttributeTemplateServiceImpl extends BaseService<AttributeTemplate,
         AttributeTemplateDao> implements AttributeTemplateService {
-//    public List<AttributeTemplate> getByCategory(Category category) {
-//        return dao.findByCategory(category);
-//    }
 }

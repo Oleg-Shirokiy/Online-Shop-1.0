@@ -25,17 +25,27 @@ public class OrderController {
     @Autowired
     OrderService orderService;
 
+    /**
+     * It allows to view order page
+     * @param id - identifier of the order
+     * @return
+     * @throws SQLException
+     */
     @RequestMapping(value = "/admin/order", method = RequestMethod.GET)
-    public ModelAndView showOrder(HttpServletRequest request,
-                                  @RequestParam(required = true) Integer id) throws SQLException {
+    public ModelAndView showOrder(@RequestParam(required = true) Integer id) throws SQLException {
         Order order = orderService.getByIdWithProductList(id);
         ModelAndView modelAndView = new ModelAndView(JspPath.ORDER);
         modelAndView.addObject("order", order);
         return modelAndView;
     }
 
+    /**
+     * It allows to show the list of orders
+     * @return
+     * @throws SQLException
+     */
     @RequestMapping(value = "/admin/orderList", method = RequestMethod.GET)
-    public ModelAndView showOrderList(HttpServletRequest request) throws SQLException {
+    public ModelAndView showOrderList() throws SQLException {
         List<Order> orderList = orderService.getAll();
         ModelAndView modelAndView = new ModelAndView(JspPath.ORDER_LIST);
         modelAndView.addObject("orderList", orderList);

@@ -19,7 +19,6 @@ public class Product extends BaseModel {
     private Currency currency;
 
     private String imageLink;
-//    private String imageFile;
 
     @ManyToOne
     @JoinColumn(name = "availability_id")
@@ -80,14 +79,6 @@ public class Product extends BaseModel {
     public void setImageLink(String imageLink) {
         this.imageLink = imageLink;
     }
-
-//    public String getImageFile() {
-//        return imageFile;
-//    }
-//
-//    public void setImageFile(String imageFile) {
-//        this.imageFile = imageFile;
-//    }
 
     public Availability getAvailability() {
         return availability;

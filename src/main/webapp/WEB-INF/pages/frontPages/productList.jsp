@@ -48,7 +48,7 @@
         <a href="/productList?display=allProducts">Al products</a>
     </div>
     <div id="quick-search" style="margin: 5%; border: 1px solid black">
-        <p class="filter-input-sign">Search for code..</p>
+        <p class="filter-input-sign">Quick search for code..</p>
         <form:form method="get" action="/productList" modelAttribute="filterDTO">
             <input type="text" name="code" value="">
             <input type="submit" value="Search">
@@ -73,7 +73,7 @@
                 </select>
             </div>
             <div class="filter">
-                <p class="filter-input-sign">Sorting</p>
+                <p class="filter-input-sign">Sorting by price</p>
                 <select name="sorting" size="1">
                     <option value="${filter.sorting}">${filter.sorting}</option>
                     <c:forEach var="sorting" items="${sortingEnum}">

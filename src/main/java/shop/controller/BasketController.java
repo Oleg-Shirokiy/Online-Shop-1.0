@@ -125,7 +125,7 @@ public class BasketController {
         String[] vendorCodes = request.getParameterValues("vendorCode");
         String[] prices = request.getParameterValues("price");
         String[] currencies = request.getParameterValues("currency");
-        String[] availStatuses = request.getParameterValues("availability");
+        String[] availStatuses = request.getParameterValues("availabilityStatus");
         Map<Integer, Integer> basket = (Map)request.getSession().getAttribute("basket");
         List<OrderedProduct> orderedProductList = new ArrayList<>(iDs.length);
         for (int i = 0; i < iDs.length; i++) {
@@ -143,6 +143,7 @@ public class BasketController {
             orderedProductList.add(orderedProduct);
         }
         order.setProductList(orderedProductList);
+        order.setDate(new Date());
         orderService.insert(order);
         basket.clear();
 

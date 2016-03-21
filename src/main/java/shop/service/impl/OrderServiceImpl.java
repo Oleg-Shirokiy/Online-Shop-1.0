@@ -27,10 +27,14 @@ public class OrderServiceImpl extends BaseService<Order, OrderDao> implements Or
     @Override
     public Order insert(Order order) {
         dao.save(order);
-        String email = order.getEmail();
-        if (email != null) {
-            mailUtil.sendMessage(senderEmail, email, subject,
-                                        getTextByOrder(order));
+        try {
+            String email = order.getEmail();
+            if (email != null) {
+                mailUtil.sendMessage(senderEmail, email, subject,
+                        getTextByOrder(order));
+            }
+        } catch (Exception ignore) {
+            ignore.printStackTrace();
         }
         return order;
     }

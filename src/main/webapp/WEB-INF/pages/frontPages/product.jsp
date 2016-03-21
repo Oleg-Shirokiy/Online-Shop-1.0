@@ -41,16 +41,16 @@
         <span class="product-attribute-content">price: ${product.price}</span>
     </div>
     <div class="product-attribute">
-        <span class="product-attribute-content">currency: ${product.currency}</span>
+        <span class="product-attribute-content">currency: ${product.currency.name}</span>
     </div>
     <div class="product-attribute">
         <span class="product-attribute-content">imageFile: ${product.imageLink}</span>
     </div>
     <div class="product-attribute">
-        <span class="product-attribute-content">availability: ${product.availability}</span>
+        <span class="product-attribute-content">availability: ${product.availability.status}</span>
     </div>
     <div class="product-attribute">
-        <span class="product-attribute-content">vendor: ${product.vendor}</span>
+        <span class="product-attribute-content">vendor: ${product.vendor.name}</span>
     </div>
     <div class="product-attribute">
         <span class="product-attribute-content">keyWords: ${product.keyWords}</span>
@@ -59,14 +59,12 @@
         <span class="product-attribute-content">description: ${productContent.description}</span>
     </div>
     <div class="product-attribute">
-        <span class="product-attribute-content">imageLinks: ${productContent.imageLinks}</span>
+        <span class="product-attribute-content">imageLinks:</span>
+        <c:forEach var="imageLink" items="${imageLinks}">
+            <p>${imageLink}</p>
+        </c:forEach>
     </div>
-    <div class="product-attribute">
-        <span class="product-attribute-content">exCategoryID: ${product.exCategoryID}</span>
-    </div>
-    <div class="product-attribute">
-        <span class="product-attribute-content">exProductID: ${product.exProductID}</span>
-    </div>
+
 </div>
 
 </body>

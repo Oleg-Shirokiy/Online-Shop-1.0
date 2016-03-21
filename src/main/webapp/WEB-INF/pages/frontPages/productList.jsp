@@ -42,7 +42,7 @@
                 </span></div>
         </c:forEach>
     </div>
-<div id="product-list-side-panel" style="margin: 10%; border: 1px solid black">
+<div id="product-list-side-panel" style="float: left; width: 30%; border: 1px solid black">
     <div id="display-mode-change-panel">
         <a href="/productList?display=byCategories">By categories</a>
         <a href="/productList?display=allProducts">Al products</a>
@@ -104,7 +104,7 @@
         </form:form>
     </div>
 </div>
-<div id="all-products" style="margin: 5%; border: 1px solid black">
+<div id="all-products" style="margin-left: 30%; border: 1px solid black">
     <p>Products</p>
     <c:forEach var="product" items="${productList}">
         <div class="product-in-all-list-div">

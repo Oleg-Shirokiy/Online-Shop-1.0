@@ -24,6 +24,8 @@ import java.util.List;
 public class OrderController {
     @Autowired
     OrderService orderService;
+    @Autowired
+    OrderStatusService orderStatusService;
 
     /**
      * It allows to view order page
@@ -47,11 +49,20 @@ public class OrderController {
     @RequestMapping(value = "/admin/orderList", method = RequestMethod.GET)
     public ModelAndView showOrderList() throws SQLException {
         List<Order> orderList = orderService.getAll();
+        List<OrderStatus> orderStatusList = orderStatusService.getAll();
         ModelAndView modelAndView = new ModelAndView(JspPath.ORDER_LIST);
         modelAndView.addObject("orderList", orderList);
+        modelAndView.addObject("orderStatusList", orderStatusList);
         return modelAndView;
     }
-
-
+    @RequestMapping(value = "/admin/changeOrderStatus", method = RequestMethod.POST)
+    public String changeOrderStatus(@RequestParam(required = true) Integer orderId,
+                                    @RequestParam(required = true) Integer orderStatusId) throws SQLException {
+        Order order = orderService.getById(orderId);
+        OrderStatus orderStatus = orderStatusService.getById(orderStatusId);
+        order.setOrderStatus(orderStatus);
+        orderService.update(order);
+        return "redirect:/admin/orderList";
+    }
 
 }

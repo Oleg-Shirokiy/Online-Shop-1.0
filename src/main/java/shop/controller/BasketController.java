@@ -143,6 +143,7 @@ public class BasketController {
             orderedProductList.add(orderedProduct);
         }
         order.setProductList(orderedProductList);
+        order.setDate(new Date());
         orderService.insert(order);
         basket.clear();
 

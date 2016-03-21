@@ -12,7 +12,7 @@
 <head>
     <title>Error 404</title>
 </head>
-<body>
+<body background="http://www.404notfound.fr/assets/images/pages/img/darkpony.jpg">
 <p><a href="/">Home</a></p>
 Error 404 - page is not available
 <!--

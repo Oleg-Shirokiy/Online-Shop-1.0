@@ -20,8 +20,8 @@
             <form:form method="post" action="/admin/changeOrderStatus">
                 <input type="hidden" name="version" value="${order.version}">
                 <input type="hidden" name="orderId"  value="${order.id}">
-                <select name="status" size="1">
-                    <option value="${order.orderStatus.id}">${order.orderStatus.name}</option>
+                <select name="orderStatusId" size="1">
+                    <option value="${order.orderStatus.id}">${order.orderStatus.status}</option>
                     <c:forEach var="orderStatus" items="${orderStatusList}">
                         <option value="${orderStatus.id}">${orderStatus.name}</option>
                     </c:forEach>

@@ -46,9 +46,8 @@ public class ProductController {
         modelAndView.addObject("basket", request.getSession().getAttribute("basket"));
         return modelAndView;
     }
-
-    public String deleteProduct(
-                                @RequestParam(required = true) Integer id) throws SQLException {
+    @RequestMapping(value = "admin/deleteProduct", method = RequestMethod.POST)
+    public String deleteProduct(@RequestParam(required = true) Integer id) throws SQLException {
         Product product = productService.getById(id);
         ProductContent productContent = productContentService.getByProduct(product);
         productContentService.delete(productContent);

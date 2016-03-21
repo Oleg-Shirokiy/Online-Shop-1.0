@@ -73,7 +73,7 @@
         <div class="builder-input">
             <span class="builder-input-sign">currency</span>
             <select name="currencyID" size="1">
-                <option value="${product.id}">${product.currency.name}</option>
+                <option value="${currency.id}">${product.currency.name}</option>
                 <c:forEach var="currency" items="${currencyList}">
                     <option value="${currency.id}">${currency.name}</option>
                 </c:forEach>
@@ -83,7 +83,7 @@
         <div class="builder-input">
             <span class="builder-input-sign">availability</span>
             <select name="availabilityID" size="1">
-                <option value="${product.availability.status}">${product.availability.status}</option>
+                <option value="${product.availability.id}">${product.availability.status}</option>
                 <c:forEach var="availability" items="${availabilityList}">
                     <option value="${availability.id}">${availability.status}</option>
                 </c:forEach>

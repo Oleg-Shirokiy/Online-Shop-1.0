@@ -62,7 +62,7 @@
                     <a href="/admin/categoryBuilder?id=${category.id}">
                             ${category.level}-lvl: ${category.name}
                     </a>
-                        <form:form method="get" action="admin/deleteCategory">
+                        <form:form method="post" action="admin/deleteCategory">
                             <input type="hidden" name="categoryId" value="${category.id}">
                             <input type="submit" value="Delete">
                         </form:form>

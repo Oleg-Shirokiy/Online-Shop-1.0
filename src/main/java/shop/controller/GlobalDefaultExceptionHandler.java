@@ -16,7 +16,13 @@ import javax.servlet.http.HttpServletRequest;
 @ControllerAdvice
 public class GlobalDefaultExceptionHandler {
 
-
+    /**
+     * Need for handling not caught anywhere else exceptions
+     * @param request
+     * @param e
+     * @return
+     * @throws Exception
+     */
     @ExceptionHandler(value = Exception.class)
     public ModelAndView defaultExceptionHandler(HttpServletRequest request, Exception e) throws Exception {
         ModelAndView modelAndView = new ModelAndView(JspPath.DEFAULT_ERROR_VIEW);

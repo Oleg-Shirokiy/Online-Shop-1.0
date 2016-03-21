@@ -36,8 +36,13 @@ public class ProductController {
     public ModelAndView showProduct(HttpServletRequest request,
                                             @RequestParam(required = false) Integer id) throws SQLException {
         Product product = productService.getById(id);
+        ProductContent productContent = productContentService.getByProduct(product);
+        String[] imageLinks = productContent.getImageLinks().split(",");
+
         ModelAndView modelAndView = new ModelAndView(JspPath.PRODUCT);
         modelAndView.addObject("product", product);
+        modelAndView.addObject("productContent", productContent);
+        modelAndView.addObject("imageLinks", imageLinks);
         modelAndView.addObject("basket", request.getSession().getAttribute("basket"));
         return modelAndView;
     }

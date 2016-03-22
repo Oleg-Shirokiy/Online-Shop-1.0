@@ -41,13 +41,15 @@ public class ProductListController {
      * @param request - need to save filter DTO through the session.
      * @param display - it allows to setup products display mode - by categories or as one list
      * @param code - need for search by vendorCode.
+     * @param message - will be shown on page with red font color if present.
      * @return
      * @throws SQLException
      */
     @RequestMapping(value = "/productList", method = RequestMethod.GET)
     public ModelAndView showProductList(HttpServletRequest request,
                                         @RequestParam(required = false) String display,
-                                        @RequestParam(required = false) String code) throws SQLException {
+                                        @RequestParam(required = false) String code,
+                                        @RequestParam(required = false) String message) throws SQLException {
         HttpSession session = request.getSession();
 
         ProductFilter filter = (ProductFilter) session.getAttribute("productFilter");
@@ -76,7 +78,9 @@ public class ProductListController {
 
             }
         }
-        List<Category> categoryList = categoryService.getByParentCategoryId(filter.getCategory());
+        Integer categoryId = filter.getCategory();
+        Category category = categoryService.getById(categoryId);
+        List<Category> categoryList = categoryService.getByParentCategoryId(categoryId);
 
         ModelAndView modelAndView = new ModelAndView(JspPath.PRODUCT_LIST);
 
@@ -91,6 +95,7 @@ public class ProductListController {
 
         List<Availability> availabilityList = availabilityService.getAll();
         List<Vendor> vendorList = vendorService.getAll();
+        modelAndView.addObject("category", category);
         modelAndView.addObject("categoryList", categoryList);
         modelAndView.addObject("availabilityList", availabilityList);
         modelAndView.addObject("vendorList", vendorList);
@@ -100,7 +105,7 @@ public class ProductListController {
 
         modelAndView.addObject("sortingEnum", Sorting.values());
 
-
+        modelAndView.addObject("message", message);
 
         return modelAndView;
     }

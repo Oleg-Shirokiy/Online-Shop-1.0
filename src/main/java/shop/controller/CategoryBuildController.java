@@ -9,6 +9,7 @@ import shop.model.Category;
 import shop.service.AttributeTemplateService;
 import shop.service.CategoryService;
 import shop.util.JspPath;
+import shop.util.Messages;
 
 import javax.servlet.http.HttpServletRequest;
 import java.sql.SQLException;
@@ -108,5 +109,17 @@ public class CategoryBuildController {
         attributeTemplateList.add(attributeTemplate);
         categoryService.update(category);
         return "redirect:/admin/categoryBuilder?id=" + category.getId();
+    }
+    @RequestMapping(value = "admin/deleteCategory", method = RequestMethod.POST)
+    public String deleteCategory(@RequestParam(required = true) Integer categoryId) throws SQLException {
+        Category category = categoryService.getById(categoryId);
+        try {
+            categoryService.delete(category);
+        } catch (RuntimeException e) {
+            e.printStackTrace();
+            return "redirect:/productList?message=" + Messages.FAILED_DELETE_CATEGORY;
+        }
+
+        return "redirect:/productList";
     }
 }

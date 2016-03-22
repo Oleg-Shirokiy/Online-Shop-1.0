@@ -87,7 +87,9 @@ public class ProductBuildController {
                               @RequestParam(required = true) Integer currencyID,
                               @RequestParam(required = true) Integer vendorID,
                                @ModelAttribute Product product,
-                               @ModelAttribute ProductContent productContent) throws SQLException, IOException {
+                               @ModelAttribute ProductContent productContent,
+                               @RequestParam(required = false) Integer productContentId,
+                               @RequestParam(required = false) Long productContentVersion) throws SQLException, IOException {
         Category category = null;
         if (categoryID != null) {
             category = categoryService.getById(categoryID);
@@ -110,9 +112,21 @@ public class ProductBuildController {
             productContentService.insert(productContent);
         } else {
             productService.update(product);
+            productContent.setId(productContentId);
+            productContent.setVersion(productContentVersion);
+            productContent.setProduct(product);
             productContentService.update(productContent);
         }
         return "redirect:/admin/productBuilder?id=" + product.getId();
+    }
+
+    @RequestMapping(value = "admin/deleteProduct", method = RequestMethod.POST)
+    public String deleteProduct(@RequestParam(required = true) Integer id) throws SQLException {
+        Product product = productService.getById(id);
+        ProductContent productContent = productContentService.getByProduct(product);
+        productContentService.delete(productContent);
+        productService.delete(product);
+        return "redirect:/productList";
     }
 
 }

@@ -21,8 +21,15 @@
         <a href="/showBasket">Basket: ${basket.size()}</a>
     </div>
 </div>
+<c:if test="${message!=null}">
+<div id="messages" style="color: red">
+    <br/>
+    ${message}
+</div>
+</c:if>
     <div id="all-categories" style="margin: 5%; border: 1px solid black">
-        <p>Categories</p>
+        <p><span>Categories  |  </span>current: ${category.name}   |   <span></span>
+            <span><a href="/goTo?category=${category.parentCategory.id}">go back..</a></span></p>
         <c:forEach var="category" items="${categoryList}">
             <div class="category-in-all-list-div">
                 <span class="categoryInAllListSpan">
@@ -34,7 +41,7 @@
                             <input type="hidden" name="categoryId" value="${category.id}">
                             <input type="submit" value="Edit">
                         </form:form>
-                        <form:form method="get" action="admin/deleteCategory">
+                        <form:form method="post" action="admin/deleteCategory">
                             <input type="hidden" name="categoryId" value="${category.id}">
                             <input type="submit" value="Delete">
                         </form:form>
@@ -127,7 +134,7 @@
                     <input type="hidden" name="id" value="${product.id}">
                     <input type="submit" value="Edit">
                 </form:form>
-                <form:form method="get" action="admin/deleteProduct">
+                <form:form method="post" action="admin/deleteProduct">
                     <input type="hidden" name="id" value="${product.id}">
                     <input type="submit" value="Delete">
                 </form:form>

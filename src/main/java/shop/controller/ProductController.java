@@ -47,12 +47,4 @@ public class ProductController {
         return modelAndView;
     }
 
-    public String deleteProduct(
-                                @RequestParam(required = true) Integer id) throws SQLException {
-        Product product = productService.getById(id);
-        ProductContent productContent = productContentService.getByProduct(product);
-        productContentService.delete(productContent);
-        productService.delete(product);
-        return "redirect:/productList";
-    }
 }

@@ -30,7 +30,7 @@ public class AttributeTemplateController {
      * @return
      * @throws SQLException
      */
-    @RequestMapping(name = "/admin/attributeBuilder", method = RequestMethod.GET)
+    @RequestMapping(value = "/admin/attributeBuilder", method = RequestMethod.GET)
     public ModelAndView showAttributeTemplateBuilder(@RequestParam(required = false) Integer id) throws SQLException {
         ModelAndView modelAndView = new ModelAndView(JspPath.ATTRIBUTE_TEMPLATE_BUILDER);
 
@@ -52,7 +52,7 @@ public class AttributeTemplateController {
      * @return
      * @throws SQLException
      */
-    @RequestMapping(name = "/admin/addAttributeTemplate", method = RequestMethod.POST)
+    @RequestMapping(value = "/admin/addAttributeTemplate", method = RequestMethod.POST)
     public String addAttributeTemplate(@ModelAttribute AttributeTemplate template) throws SQLException {
         if (template.getId() != null) {
             attributeTemplateService.update(template);

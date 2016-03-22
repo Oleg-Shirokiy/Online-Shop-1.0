@@ -40,6 +40,7 @@
 
 
         <form:form method="post" action="/admin/saveProduct" modelAttribute="product">
+        <input type="hidden" name="id" value="${product.id}">
         <input type="hidden" name="version" value="${product.version}">
         <div class="builder-input">
             <%--<span class="builderInputSign">categoryID</span>--%>
@@ -73,7 +74,7 @@
         <div class="builder-input">
             <span class="builder-input-sign">currency</span>
             <select name="currencyID" size="1">
-                <option value="${product.id}">${product.currency.name}</option>
+                <option value="${product.currency.id}">${product.currency.name}</option>
                 <c:forEach var="currency" items="${currencyList}">
                     <option value="${currency.id}">${currency.name}</option>
                 </c:forEach>
@@ -83,7 +84,7 @@
         <div class="builder-input">
             <span class="builder-input-sign">availability</span>
             <select name="availabilityID" size="1">
-                <option value="${product.availability.status}">${product.availability.status}</option>
+                <option value="${product.availability.id}">${product.availability.status}</option>
                 <c:forEach var="availability" items="${availabilityList}">
                     <option value="${availability.id}">${availability.status}</option>
                 </c:forEach>
@@ -104,6 +105,8 @@
         </div>
 
             <form:form method="post" action="/admin/saveProduct" modelAttribute="ProductContent">
+                <input type="hidden" name="productContentId" value="${productContent.id}">
+                <input type="hidden" name="productContentVersion" value="${productContent.version}">
                 <div class="builder-input">
                     <span class="builder-input-sign">description</span>
                     <textarea rows="10" cols="20" name="description">${productContent.description}</textarea>

@@ -78,7 +78,9 @@ public class ProductListController {
 
             }
         }
-        List<Category> categoryList = categoryService.getByParentCategoryId(filter.getCategory());
+        Integer categoryId = filter.getCategory();
+        Category category = categoryService.getById(categoryId);
+        List<Category> categoryList = categoryService.getByParentCategoryId(categoryId);
 
         ModelAndView modelAndView = new ModelAndView(JspPath.PRODUCT_LIST);
 
@@ -93,6 +95,7 @@ public class ProductListController {
 
         List<Availability> availabilityList = availabilityService.getAll();
         List<Vendor> vendorList = vendorService.getAll();
+        modelAndView.addObject("category", category);
         modelAndView.addObject("categoryList", categoryList);
         modelAndView.addObject("availabilityList", availabilityList);
         modelAndView.addObject("vendorList", vendorList);

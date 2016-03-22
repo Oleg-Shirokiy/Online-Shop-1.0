@@ -8,7 +8,7 @@ import java.util.List;
  */
 @Entity(name = "categories")
 public class Category extends BaseModel{
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     Category parentCategory;
 
     int level;

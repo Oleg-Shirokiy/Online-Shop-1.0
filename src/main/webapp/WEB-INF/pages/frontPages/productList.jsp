@@ -28,7 +28,8 @@
 </div>
 </c:if>
     <div id="all-categories" style="margin: 5%; border: 1px solid black">
-        <p>Categories</p>
+        <p><span>Categories  |  </span>current: ${category.name}   |   <span></span>
+            <span><a href="/goTo?category=${category.parentCategory.id}">go back..</a></span></p>
         <c:forEach var="category" items="${categoryList}">
             <div class="category-in-all-list-div">
                 <span class="categoryInAllListSpan">
